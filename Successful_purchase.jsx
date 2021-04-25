@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 
-export default function Successful_purchase() {
+export default function Successful_purchase(props) {
   return (
       <SafeAreaView style={styles.container}>
       <View style={styles.main}>
@@ -19,11 +19,11 @@ export default function Successful_purchase() {
       </View>
       <View style={styles.bottomNav}>
         <View>
-          <Text style={styles.navLink}>Previous</Text>
+          <Text onPress={() => props.navigation.goBack()} style={styles.navLink}>Previous</Text>
         </View>
         <View style={{ flexDirection: "row" }}>
-          <View style={styles.navSmall}></View>
-          <View style={styles.navSmall}></View>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Online_Shopping')} style={styles.navSmall}></TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigation.goBack()} style={styles.navSmall}></TouchableOpacity>
           <View style={styles.navLarge}></View>
         </View>
         <View>
@@ -36,7 +36,8 @@ export default function Successful_purchase() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: "#fff"
       },
   main: {
     flex: 1,

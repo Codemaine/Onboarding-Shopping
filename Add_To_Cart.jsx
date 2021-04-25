@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 
-export default function Add_To_Cart() {
+export default function Add_To_Cart(props) {
   return (
       <SafeAreaView style={styles.container}>
       <View style={styles.main}>
@@ -12,22 +12,22 @@ export default function Add_To_Cart() {
       when an unknown printer took a galley</Text>
         <Image source={require('./assets/add_to_cart.png')} style={styles.image} />
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>
+          <Text style={styles.buttonText} onPress={() => props.navigation.navigate('Successful_purchase')}>
             Next
           </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.bottomNav}>
         <View>
-          <Text style={styles.navLink}>Previous</Text>
+          <Text onPress={() => props.navigation.goBack()} style={styles.navLink}>Previous</Text>
         </View>
         <View style={{ flexDirection: "row" }}>
-          <View style={styles.navSmall}></View>
+          <TouchableOpacity onPress={() => props.navigation.goBack()} style={styles.navSmall}></TouchableOpacity>
           <View style={styles.navLarge}></View>
-          <View style={styles.navSmall}></View>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Successful_purchase')} style={styles.navSmall}></TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.navLink}>Skip</Text>
+          <Text onPress={() => props.navigation.navigate('Successful_purchase')} style={styles.navLink}>Skip</Text>
         </View>
       </View>
       </SafeAreaView>
@@ -36,7 +36,8 @@ export default function Add_To_Cart() {
 
 const styles = StyleSheet.create({
  container: {
-     flex: 1
+     flex: 1,
+     backgroundColor: "#fff"
  },
   main: {
     flex: 1,

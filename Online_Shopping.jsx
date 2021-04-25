@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 
-export default function Online_Shopping() {
+export default function Online_Shopping(props) {
   return (
       <SafeAreaView style={styles.container}>
       <View style={styles.main}>
@@ -12,7 +12,7 @@ export default function Online_Shopping() {
       when an unknown printer took a galley</Text>
         <Image source={require('./assets/online_shopping.png')} style={styles.image} />
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>
+          <Text style={styles.buttonText} onPress={() => props.navigation.navigate('Add_To_Cart')}>
             Next
           </Text>
         </TouchableOpacity>
@@ -22,11 +22,11 @@ export default function Online_Shopping() {
         </View>
         <View style={{ flexDirection: "row" }}>
         <View style={styles.navLarge}></View>
-          <View style={styles.navSmall}></View>
-          <View style={styles.navSmall}></View>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Add_To_Cart')} style={styles.navSmall}></TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Successful_purchase')} style={styles.navSmall}></TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.navLink}>Skip</Text>
+          <Text style={styles.navLink} onPress={() => props.navigation.navigate('Add_To_Cart')}>Skip</Text>
         </View>
       </View>
       </SafeAreaView>
@@ -35,7 +35,8 @@ export default function Online_Shopping() {
 
 const styles = StyleSheet.create({
  container: {
-     flex: 1
+     flex: 1,
+     backgroundColor: "#fff"
  },
   main: {
     flex: 1,
